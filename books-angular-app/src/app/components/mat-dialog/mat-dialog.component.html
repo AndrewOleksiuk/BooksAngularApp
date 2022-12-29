@@ -3,33 +3,26 @@
 
     <mat-form-field>
       <span>Book Name</span>
-      <input matInput
-             class="input"
-             formControlName="name">
+      <input matInput class="input" formControlName="name">
     </mat-form-field>
 
     <mat-form-field>
       <span>Publisher</span>
-      <input matInput
-             class="input"
-             formControlName="publisher">
+      <input matInput class="input" formControlName="publisher">
     </mat-form-field>
 
-      <mat-form-field class="notice">
-        <span>Book Notice</span>
-          <input matInput
-                 class="input"
-                 formControlName="notice">
-      </mat-form-field>
-      <br>
-      <span>Is Read</span>
-      <input type="checkbox"
-                 formControlName="isRead">
+    <mat-form-field class="notice">
+      <span>Book Notice</span>
+      <input matInput class="input" formControlName="notice">
+    </mat-form-field>
+    <br>
+    <span>Is Read</span>
+    <input type="checkbox" formControlName="isRead">
   </mat-dialog-content>
 
   <mat-dialog-actions>
-      <button mat-raised-button (click)="close()">Close</button>
-      <button mat-raised-button color="primary" (click)="save()">Save</button>
+    <button mat-raised-button (click)="close()">Close</button>
+    <button mat-raised-button color="primary" (click)="save()">Save</button>
   </mat-dialog-actions>
 
 </div>

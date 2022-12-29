@@ -15,11 +15,11 @@ import { SearchFilters } from '../../models/search-filters';
 export class BooksComponent implements OnInit {
 
   constructor(private booksService: BooksService,
-              private fb: FormBuilder,
-              public dialog: MatDialog) { }
+    private fb: FormBuilder,
+    public dialog: MatDialog) { }
 
   public books: Book[] = [];
-  
+
   private filterText = '';
   private onlyRead = false;
   private alphabetOrder = false;
@@ -34,7 +34,7 @@ export class BooksComponent implements OnInit {
     this.getBooks();
   }
 
-  public getBooks(): void  {
+  public getBooks(): void {
     this.booksService.getAllBooks().subscribe(result => {
       this.books = result;
     });
@@ -50,7 +50,7 @@ export class BooksComponent implements OnInit {
         newBook.id = book.id;
         this.booksService.putBook(newBook).subscribe(() => {
           const index = this.books.findIndex(b => b.id === book.id);
-          this.books[index] = { 
+          this.books[index] = {
             id: book.id,
             publisher: newBook.publisher,
             name: newBook.name,
@@ -84,8 +84,8 @@ export class BooksComponent implements OnInit {
 
   public deleteBook(book: Book): void {
     this.booksService.deleteBook(book.id).subscribe(() => {
-      this.books.forEach((value,index)=>{
-        if(value==book) this.books.splice(index,1);
+      this.books.forEach((value, index) => {
+        if (value == book) this.books.splice(index, 1);
       });
     });
   }
