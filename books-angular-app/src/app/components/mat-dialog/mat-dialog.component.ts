@@ -1,17 +1,17 @@
-import { Component, Inject, OnInit } from '@angular/core';
 import { Book } from '../../models/book';
-import { MatDialog, MAT_DIALOG_DATA, MatDialogRef, MatDialogConfig } from '@angular/material/dialog';
+import { Component, Inject } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 
 @Component({
-    selector: 'mat-dialog',
+    selector: 'app-mat-dialog',
     templateUrl: 'mat-dialog.component.html',
     styleUrls: ['./mat-dialog.component.scss']
   })
 
 export class MatDialogComponent {
     
-    form = this.fb.group({
+    public form = this.fb.group({
        id: [this.book.id],
        name: [this.book.name, Validators.required],
        publisher: [this.book.publisher,  Validators.required],
@@ -24,14 +24,11 @@ export class MatDialogComponent {
                 private dialogRef: MatDialogRef<MatDialogComponent>) {
     }
 
-    ngOnInit() {
-    }
-
-    close() {
+    public close(): void {
       this.dialogRef.close();
     }
 
-    save() {
+    public save(): void {
       this.dialogRef.close(this.form.value);
     }
 }

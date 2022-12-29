@@ -1,10 +1,10 @@
-import { Component, OnInit } from '@angular/core';
 import { Book } from '../../models/book';
-import { SearchFilters } from '../../models/search-filters';
 import { BooksService } from '../../services/books.service';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder } from '@angular/forms';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { MatDialogComponent } from '../mat-dialog/mat-dialog.component';
-import { FormBuilder } from '@angular/forms';
+import { SearchFilters } from '../../models/search-filters';
 
 
 @Component({
@@ -24,23 +24,23 @@ export class BooksComponent implements OnInit {
   private onlyRead = false;
   private alphabetOrder = false;
 
-  filterForm = this.fb.group({
+  public filterForm = this.fb.group({
     filterText: [this.filterText],
     onlyRead: [this.onlyRead],
     alphabetOrder: [this.alphabetOrder]
   });
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this.getBooks();
   }
 
-  getBooks(): void  {
+  public getBooks(): void  {
     this.booksService.getAllBooks().subscribe(result => {
       this.books = result;
     });
   }
 
-  editBook(book: Book) {
+  public editBook(book: Book): void {
     const config = new MatDialogConfig();
     config.data = book;
 
@@ -48,7 +48,7 @@ export class BooksComponent implements OnInit {
     dialogRef.afterClosed().subscribe((newBook: Book) => {
       if (newBook !== undefined) {
         newBook.id = book.id;
-        this.booksService.putBook(newBook).subscribe(res => {
+        this.booksService.putBook(newBook).subscribe(() => {
           const index = this.books.findIndex(b => b.id === book.id);
           this.books[index] = { 
             id: book.id,
@@ -62,7 +62,7 @@ export class BooksComponent implements OnInit {
     });
   }
 
-  addBook() {
+  public addBook(): void {
     const config = new MatDialogConfig();
     config.data = {
       id: 0,
@@ -75,22 +75,22 @@ export class BooksComponent implements OnInit {
     const dialogRef = this.dialog.open(MatDialogComponent, config);
     dialogRef.afterClosed().subscribe((book: Book) => {
       if (book !== undefined) {
-        this.booksService.postBook(book).subscribe(res => {
+        this.booksService.postBook(book).subscribe(() => {
           this.books.push(book);
         });
       }
     });
   }
 
-  deleteBook(book: Book) {
-    this.booksService.deleteBook(book.id).subscribe(res => {
+  public deleteBook(book: Book): void {
+    this.booksService.deleteBook(book.id).subscribe(() => {
       this.books.forEach((value,index)=>{
         if(value==book) this.books.splice(index,1);
       });
     });
   }
 
-  findBooks() {
+  public findBooks(): void {
     const filters: SearchFilters = this.filterForm.value as SearchFilters;
     this.booksService.getBooks(filters).subscribe(res => {
       this.books = res;

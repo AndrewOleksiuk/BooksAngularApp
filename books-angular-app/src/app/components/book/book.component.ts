@@ -1,14 +1,12 @@
-import { Component, Input, OnInit } from '@angular/core';
 import { Book } from '../../models/book';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-book',
   templateUrl: './book.component.html',
   styleUrls: ['./book.component.css']
 })
-export class BookComponent implements OnInit {
-
-  constructor() { }
+export class BookComponent {
 
   @Input() book: Book = {
     id: 0,
@@ -17,8 +15,4 @@ export class BookComponent implements OnInit {
     publisher: '',
     isRead: false
   };
-  
-  ngOnInit(): void {
-  }
-
 }
