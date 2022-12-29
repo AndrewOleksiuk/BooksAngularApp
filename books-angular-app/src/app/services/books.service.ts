@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import {HttpClient, HttpParams} from '@angular/common/http';
 import { Book } from '../models/book';
+import { SearchFilters } from '../models/search-filters';
 
 @Injectable({
   providedIn: 'root'
@@ -15,8 +16,12 @@ export class BooksService {
     return this.http.get<Book>(this.apiUrl + id);
   }
 
-  public getBooks(): Observable<Book[]> {
+  public getAllBooks(): Observable<Book[]> {
     return this.http.get<Book[]>(this.apiUrl);
+  }
+
+  public getBooks(searchFilters: SearchFilters): Observable<Book[]> {
+    return this.http.put<Book[]>(`${this.apiUrl}/find`, searchFilters);
   }
 
   public postBook(book: Book): Observable<Book> {
@@ -25,5 +30,9 @@ export class BooksService {
 
   public putBook(book: Book): Observable<object> {
     return this.http.put(this.apiUrl, { book });
+  }
+
+  public deleteBook(id: number): Observable<object> {
+    return this.http.delete(`${this.apiUrl}/${id}`);
   }
 } 

@@ -1,27 +1,17 @@
 
 <div [formGroup]="filterForm">
-  <input type="text" formControlName="filterText" placeholder="Search for names..">
-  <input type="checkbox" formControlName="onlyRead" placeholder="Search for names..">
-  <input type="checkbox" formControlName="alphabetOrder" placeholder="Search for names..">
+  <input type="text" class="search" formControlName="filterText" placeholder="Search for names..">
+  <span>Only Read Books</span><input type="checkbox" formControlName="onlyRead">
+  <span>Alphabet Ordering</span><input type="checkbox" formControlName="alphabetOrder">
   <button (click)="findBooks()">Search</button>
 </div>
 
 <div class="container content-wrapper">
-  <div *ngFor="let book of books" class="card">
-    <div class="card-body" (click)="editBook(book)">
-      <h1 class="card-title">
-        {{ book.name }}
-      </h1>
-      <h2 class="card-title">
-        {{ book.publisher }}
-      </h2>
-      <p class="card-text" >
-        {{ book.notice }}
-        {{ book.isRead }}
-      </p>
-    </div>
+  <div *ngFor="let book of books">
+    <app-book (click)="editBook(book)" [book]="book"></app-book>
+    <button class="delete" (click)="deleteBook(book)">Delete</button>
   </div>
-  <div (click)="addBook()" class="card">
-    Add Book
+  <div (click)="addBook()" class="small-card">
+    <p>Add Book</p>
   </div>
 </div>

@@ -11,12 +11,14 @@ import { BooksComponent } from './components/books/books.component';
 import { MatDialogComponent } from './components/mat-dialog/mat-dialog.component';
 import { HttpClientModule } from '@angular/common/http';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { BookComponent } from './components/book/book.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     BooksComponent,
-    MatDialogComponent
+    MatDialogComponent,
+    BookComponent
   ],
   imports: [
     BrowserAnimationsModule,

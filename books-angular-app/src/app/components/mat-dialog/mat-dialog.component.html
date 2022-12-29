@@ -1,32 +1,30 @@
-<div class="edit-course-form">
-
-
-  <mat-dialog-content [formGroup]="form">
+<div class="edit-book-form">
+  <mat-dialog-content class="field-container" [formGroup]="form">
 
     <mat-form-field>
+      <span>Book Name</span>
       <input matInput
-             placeholder="Book Name"
+             class="input"
              formControlName="name">
     </mat-form-field>
 
     <mat-form-field>
+      <span>Publisher</span>
       <input matInput
-             placeholder="Book Publisher"
+             class="input"
              formControlName="publisher">
     </mat-form-field>
 
-      <mat-form-field>
+      <mat-form-field class="notice">
+        <span>Book Notice</span>
           <input matInput
-                 placeholder="Book Notice"
+                 class="input"
                  formControlName="notice">
       </mat-form-field>
-
-      
-        <input type="checkbox"
-          placeholder="Is Already Read"
+      <br>
+      <span>Is Read</span>
+      <input type="checkbox"
                  formControlName="isRead">
-      
-     
   </mat-dialog-content>
 
   <mat-dialog-actions>

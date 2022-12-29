@@ -1,0 +1,16 @@
+<div class="card">
+  <div class="card-body">
+    <h1 class="card-title">
+      {{ book.name }}
+    </h1>
+    <h2 class="card-title">
+      Publisher:{{ book.publisher }}
+    </h2>
+    <p  >
+      State: <span *ngIf="book.isRead">Read</span><span *ngIf="!book.isRead">New</span>
+    </p>
+    <div class="card-text">
+      Notice: {{ book.notice }}
+    </div>
+  </div>
+</div>

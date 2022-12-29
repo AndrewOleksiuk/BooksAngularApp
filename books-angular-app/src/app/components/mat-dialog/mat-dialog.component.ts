@@ -6,6 +6,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 @Component({
     selector: 'mat-dialog',
     templateUrl: 'mat-dialog.component.html',
+    styleUrls: ['./mat-dialog.component.scss']
   })
 
 export class MatDialogComponent {
